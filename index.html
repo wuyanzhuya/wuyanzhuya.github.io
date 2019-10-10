@@ -8,10 +8,19 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script>
     $(function(){
-      $.get("./data.json"),function(result){
+
+      var callback=function(result){
         $("#myname").text(result.myname);
         $("#mynumber").text(result.mynumber)
       }
+      $.get("./data.json",callback);
+    })
+
+    $("#btn").click(function(){
+      $.get("./data.json",function(result){
+        $("#myname").text(result.myname);
+        $("#mynumber").text(result.mynumber)
+      });
     })
     </script>
 </body>
