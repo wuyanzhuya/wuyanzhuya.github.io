@@ -1,9 +1,18 @@
 <html>
 <body>
-<h1>我叫李南星</h1>
-  <P>我的学号是<span id="studentid">18002090116</span>
+<h1>我叫<span id="myname"></span></h1>
+  <P>我的学号是<span id="mynumber"></span>
   </p>
   <img src="matrix.png"/>
   <img  id="logo" src="linanxing.jpg">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    $(function(){
+      $.get("./data.json"),function(result){
+        $("#myname").text(result.myname);
+        $("#mynumber").text(result.mynumber)
+      }
+    })
+    </script>
 </body>
 </html>
