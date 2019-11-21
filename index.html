@@ -3,6 +3,7 @@
 <h1>我叫<span id="myname"></span></h1>
   <P>我的学号是<span id="mynumber"></span>
   </p>
+  <a id="btn" href="login.html">去登陆</a>
   <img src="matrix.png"/>
   <img  id="logo" src="linanxing.jpg">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -13,11 +14,22 @@
         $("#myname").text(result.myname);
         $("#mynumber").text(result.mynumber)
       }
-      $.get("./data.json",callback);
+      $.ajax({
+        type: "POST",
+        xhrFields:{
+          withCredentials:true
+        },
+        url: "http://10.30.201.66:8585/data.json",
+        contentType:"applicaton/json",
+        data:JSON.stringify({"stunumber":"2012020045"}),
+        success:callback
+      });
+
+      // $.post("http://10.30.201.66:8585/data.json",{stu:"18002090116" },callback);
     })
 
     $("#btn").click(function(){
-      $.get("./data.json",function(result){
+      $.get("http://10.30.201.66:8585/data.json",function(result){
         $("#myname").text(result.myname);
         $("#mynumber").text(result.mynumber)
       });

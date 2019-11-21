@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <p>账号：<input type="text" id="number" value=""></p>
+    <p>密码：<input type="password" id="password" value=""></p>
+    <p><button id="btn">登陆</button></p>
+    <script>
+        $(function(){
+            $("#btn").click(function(){
+                var data={
+                    number:$("#number").val(),
+                    password:$("#password").val()
+                };
+        $.ajax({
+        type: "POST",
+            xhrFields:{
+                withCredentials:true
+            },
+        url: "http://10.30.201.66:8585/login",
+        contentType:"application/json",
+        data:JSON.stringify(data)
+        ,success:function(result){
+            if(result.result=='success'){
+                location.href='index.html';
+            }
+        }
+            });
+            })
+        })
+    </script>
+</body>
+</html>
